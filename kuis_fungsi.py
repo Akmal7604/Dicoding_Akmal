@@ -8,14 +8,16 @@ Buatlah sebuah fungsi bernama "minimal" dengan ketentuan berikut.
 
 # TODO: Silakan buat kode Anda di bawah ini.
 
-def minimal(a, b):
-  if(a<b):
-    return a
-  elif(a>b):
-    return b
-  elif(a==b):
-    return a
 
-print(minimal(1, 2)) # 1
-print(minimal(3, 1)) # 1
-print(minimal(3, 3)) # 3
+def minimal(a, b):
+    if a < b:
+        return a
+    elif a > b:
+        return b
+    elif a == b:
+        return a
+
+
+print(minimal(1, 2))  # 1
+print(minimal(3, 1))  # 1
+print(minimal(3, 3))  # 3

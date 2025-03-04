@@ -5,4 +5,4 @@ data = {
 }
  
 df = pd.DataFrame(data)
-df
+print(df)

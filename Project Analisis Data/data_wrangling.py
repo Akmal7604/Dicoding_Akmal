@@ -65,7 +65,26 @@ product_df.drop_duplicates(inplace=True) # menghapus data duplikat
 
 # Membersihkan data pada sales_df
 sales_df["total_price"] = sales_df["price_per_unit"] * sales_df["quantity"] # menambahkan kolom total_price
-infoSales()
+
+
+
+
+######################################### Explanatory Data Analysis #########################################
+
+print(customers_df.describe(include="all")) # menampilkan statistik deskriptif
+
+customers_df.groupby(by="gender").agg({
+    "customer_id": "nunique",
+    "age": ["max", "min", "mean", "std"]
+}) # menampilkan statistik deskriptif berdasarkan gender
+
+customers_df.groupby(by="city").customer_id.nunique().sort_values(ascending=False)
+customers_df.groupby(by="state").customer_id.nunique().sort_values(ascending=False)
+
+print (customers_df.all)
+
+
+
 
 
 

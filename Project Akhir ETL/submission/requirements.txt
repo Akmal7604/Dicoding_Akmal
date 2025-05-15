@@ -1,0 +1,7 @@
+requests
+beautifulsoup4
+pandas
+pytest
+gspread
+oauth2client
+pytest-cov

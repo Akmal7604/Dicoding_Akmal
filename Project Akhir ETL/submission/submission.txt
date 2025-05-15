@@ -1,0 +1,17 @@
+# Nyalakan venv
+.\venv\Scripts\activate
+
+# Menjalankan skrip
+python main.py
+
+# Menjalankan unit test pada folder tests
+pytest --cov=utils tests/test_extract.py
+pytest --cov=utils tests/test_transform.py
+pytest --cov=utils tests/test_load.py
+
+
+# Menjalankan test coverage pada folder tests
+pytest --cov=utils tests/
+
+# Url Google Sheets:
+https://docs.google.com/spreadsheets/d/13iyRfZM3bVfW1WU_5RKhNfoFUnFEEg4Kvlu6mQZYQso/edit?usp=sharing

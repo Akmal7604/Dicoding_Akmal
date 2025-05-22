@@ -26,10 +26,10 @@ def create_mock_product_html():
         <h3 class='product-title'>Test Shirt</h3>
         <span class='price'>$100.00</span>
         <div class='product-details'>
-            <p>Rating: ⭐ 5 / 5</p>
+            <p>Rating: ⭐ 3.9 / 5</p>
             <p>Colors: 5 Colors</p>
             <p>Size: M</p>
-            <p>Gender: Unisex</p>
+            <p>Gender: Women</p>
         </div>
     </div>
     """
@@ -48,10 +48,10 @@ def test_extract_product_data():
     assert 'timestamp' in result
     assert result['title'] == 'Test Shirt'
     assert result['price'] == '$100.00'
-    assert result['rating'] == '⭐ 5 / 5'
+    assert result['rating'] == '⭐ 3.9 / 5'
     assert result['colors'] == '5 Colors'
     assert result['size'] == 'M'
-    assert result['gender'] == 'Unisex'
+    assert result['gender'] == 'Women'
 
 def test_extract_product_data_incomplete():
     """Menguji ekstraksi produk dengan data tidak lengkap"""
@@ -89,7 +89,7 @@ def test_fetch_page_content():
         assert result == b"<html>Test Content</html>"
         mock_get.assert_called_once_with("https://test-url.com", headers=HEADERS)
 
-def test_fetch_page_content_error():
+def test_fetch_page_content_error():    
     """Menguji error handling pada fetch_page_content"""
     # Mock requests.get untuk melempar exception
     with patch('requests.get') as mock_get:
@@ -115,14 +115,14 @@ def test_scrape_fashion_studio_basic(mock_beautifulsoup, mock_fetch):
     # Buat mock soup dengan produk palsu
     mock_soup = MagicMock()
     mock_product = BeautifulSoup(create_mock_product_html(), 'html.parser').find('div', class_='collection-card')
-    mock_soup.find_all.return_value = [mock_product] * 10  # 10 produk palsu
+    mock_soup.find_all.return_value = [mock_product] * 1000  # 10 produk palsu
     mock_beautifulsoup.return_value = mock_soup
     
     # Panggil fungsi scraping
     results = scrape_fashion_studio()
     
     # Validasi
-    assert len(results) == 10  # Sesuai jumlah produk palsu
+    assert len(results) == 1000  # Sesuai jumlah produk palsu
     
     # Pastikan setiap produk memiliki struktur yang benar
     for result in results:

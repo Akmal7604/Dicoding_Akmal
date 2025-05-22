@@ -26,14 +26,20 @@ def save_to_google_sheets(df, worksheet_name='Fashion Studio Products'):
         )
         
         client = gspread.authorize(credentials)
-        sheet = client.create(worksheet_name)
+        
+        # Cek apakah spreadsheet sudah ada, jika belum buat baru
+        try:
+            sheet = client.open(worksheet_name)
+        except gspread.SpreadsheetNotFound:
+            sheet = client.create(worksheet_name)
+        
         sheet.share(None, perm_type='anyone', role='writer')
         
-        worksheet = sheet.get_worksheet(0)
+        worksheet = sheet.get_worksheet(0) or sheet.add_worksheet(title=worksheet_name, rows=1000, cols=20)
         worksheet.update([df.columns.values.tolist()] + df.values.tolist())
         
         print(f"Data berhasil disimpan ke Google Sheets: {worksheet_name}")
-        print(f"Spreadsheet berhasil dibuat. Cek di Google Sheets: {sheet.url}")
+        print(f"Spreadsheet berhasil dibuat/diperbarui. Cek di Google Sheets: {sheet.url}")
     
     except Exception as e:
         print(f"Gagal menyimpan ke Google Sheets: {e}")

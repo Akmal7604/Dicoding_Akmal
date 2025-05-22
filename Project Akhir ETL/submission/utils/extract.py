@@ -62,7 +62,7 @@ def scrape_fashion_studio():
 
         for product in products:
             if len(all_products) >= 1000:
-                return all_products
+                break
             extracted_data = extract_product_data(product)
             if extracted_data:
                 all_products.append(extracted_data)
@@ -79,9 +79,13 @@ def scrape_fashion_studio():
 
         for product in products:
             if len(all_products) >= 1000:
-                return all_products
+                break
             extracted_data = extract_product_data(product)
             if extracted_data:
                 all_products.append(extracted_data)
+        
+        # Keluar dari loop jika sudah mencapai 1000 produk
+        if len(all_products) >= 1000:
+            break
 
     return all_products

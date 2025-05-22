@@ -1,5 +1,9 @@
-# Nyalakan venv
+# Buat dan nyalakan venv
+python -m venv venv
 .\venv\Scripts\activate
+
+# Jalankan requirements.txt
+pip install -r requirements.txt
 
 # Menjalankan skrip
 python main.py
@@ -14,4 +18,4 @@ pytest --cov=utils tests/test_load.py
 pytest --cov=utils tests/
 
 # Url Google Sheets:
-https://docs.google.com/spreadsheets/d/13iyRfZM3bVfW1WU_5RKhNfoFUnFEEg4Kvlu6mQZYQso/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/17H9PWhV3q09xJujAUspfEqbDeR52NQtiB9IEjjiTcHc/edit?usp=sharing
